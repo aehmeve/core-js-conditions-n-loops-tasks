@@ -112,8 +112,59 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const tens = Math.floor(num / 10);
+  const ones = num % 10;
+  let lastPart = '';
+  let firstPart = '';
+
+  switch (tens) {
+    case 1:
+      firstPart = 'X';
+      break;
+    case 2:
+      firstPart = 'XX';
+      break;
+    case 3:
+      firstPart = 'XXX';
+      break;
+    default:
+      firstPart = '';
+  }
+
+  switch (ones) {
+    case 1:
+      lastPart = 'I';
+      break;
+    case 2:
+      lastPart = 'II';
+      break;
+    case 3:
+      lastPart = 'III';
+      break;
+    case 4:
+      lastPart = 'IV';
+      break;
+    case 5:
+      lastPart = 'V';
+      break;
+    case 6:
+      lastPart = 'VI';
+      break;
+    case 7:
+      lastPart = 'VII';
+      break;
+    case 8:
+      lastPart = 'VIII';
+      break;
+    case 9:
+      lastPart = 'IX';
+      break;
+    default:
+      lastPart = '';
+  }
+
+  return `${firstPart}${lastPart}`;
 }
 
 /**
@@ -131,8 +182,57 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let newStr = '';
+  let cellForWord = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        cellForWord = 'zero';
+        break;
+      case '1':
+        cellForWord = 'one';
+        break;
+      case '2':
+        cellForWord = 'two';
+        break;
+      case '3':
+        cellForWord = 'three';
+        break;
+      case '4':
+        cellForWord = 'four';
+        break;
+      case '5':
+        cellForWord = 'five';
+        break;
+      case '6':
+        cellForWord = 'six';
+        break;
+      case '7':
+        cellForWord = 'seven';
+        break;
+      case '8':
+        cellForWord = 'eight';
+        break;
+      case '9':
+        cellForWord = 'nine';
+        break;
+      case '-':
+        cellForWord = 'minus';
+        break;
+      default:
+        cellForWord = 'point';
+    }
+
+    if (i !== numberStr.length - 1) {
+      cellForWord += ' ';
+    }
+
+    newStr += cellForWord;
+  }
+
+  return newStr;
 }
 
 /**
@@ -147,8 +247,14 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let newStr = '';
+
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    newStr += str[i];
+  }
+
+  return newStr === str;
 }
 
 /**
@@ -165,8 +271,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
@@ -184,8 +296,16 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const numArray = [...`${num}`];
+
+  for (let i = 0; i < numArray.length; i += 1) {
+    if (+numArray[i] === digit) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 /**
