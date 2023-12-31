@@ -66,8 +66,17 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const xAxesDiff = Math.abs(king.x - queen.x);
+  const yAxesDiff = Math.abs(king.y - queen.y);
+
+  if (xAxesDiff === yAxesDiff) {
+    return true;
+  }
+  if (xAxesDiff === 0 || yAxesDiff === 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -321,8 +330,24 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 0; i < arr.length; i += 1) {
+    const probableBalancerIndex = i;
+    let firstPartSum = 0;
+    let lastPartSum = 0;
+
+    for (let j = 0; j < probableBalancerIndex; j += 1) {
+      firstPartSum += +arr[j];
+    }
+    for (let k = arr.length - 1; k > probableBalancerIndex; k -= 1) {
+      lastPartSum += +arr[k];
+    }
+    if (firstPartSum === lastPartSum) {
+      return probableBalancerIndex;
+    }
+  }
+
+  return -1;
 }
 
 /**
